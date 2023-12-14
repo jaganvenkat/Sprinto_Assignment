@@ -1,0 +1,104 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-12-14T17:06:08.896Z",
+    "end": "2023-12-14T17:07:09.778Z",
+    "duration": 60882,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "aa936f43-cf11-4b46-b9b5-00eb9ae31085",
+      "title": "",
+      "fullFile": "cypress/e2e/flight_booking.cy.ts",
+      "file": "cypress/e2e/flight_booking.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4a2fbe9a-7357-4c37-9c23-00043a7193de",
+          "title": "Clear trip booking",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "To test flight booking for one week from today",
+              "fullTitle": "Clear trip booking To test flight booking for one week from today",
+              "timedOut": null,
+              "duration": 60493,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', 'https://www.cleartrip.com/itin/v3/itinerary/create').as('bookingRequest');\nhome.selectSource(this.data.source);\nhome.selectDestination(this.data.destination);\nhome.selectDepartureDate(oneWeekFrmToday);\nhome.getSearchBtn().click();\nresult.getCheapestPrice().then(price => {\n    let cheapestPrice = price.text();\n    cy.wrap(cheapestPrice).as('cheapestPrice');\n});\nresult.getCheapestFlight().click();\ncy.wait('@bookingRequest')\n    .its('response.body')\n    .then((body) => {\n    cy.visit(`/flights/itinerary/${body.itineraryId}/info?ancillaryEnabled=true`);\n});\nbooking.getClearTripLogo().should('be.visible');\ncy.get('@cheapestPrice').then(cheapestPrice => {\n    cy.contains(\"Total price\").next().should('have.text', cheapestPrice);\n});",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.ts` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Clear trip booking`",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.ts` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Clear trip booking`\n    at timedOutWaitingForPageLoad (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:130429:64)\n    at <unknown> (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:131417:16)\n    at tryCatcher (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://www.cleartrip.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://sprinto_assignment/./cypress/e2e/flight_booking.cy.ts:17:0)",
+                "diff": null
+              },
+              "uuid": "03fbc7dd-aa8b-4143-bc2d-a8aa62a92bd4",
+              "parentUUID": "4a2fbe9a-7357-4c37-9c23-00043a7193de",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "03fbc7dd-aa8b-4143-bc2d-a8aa62a92bd4"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 60493,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
