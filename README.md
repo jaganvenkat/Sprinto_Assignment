@@ -1,4 +1,4 @@
-#zeitview_assignment
+#sprinto_assignment
 
 Installation
 
@@ -8,7 +8,7 @@ Once you have Node.js and npm installed, follow these steps to set up the Cypres
 
 1. Clone this repository to your local machine:
 
-  git clone https://github.com/jaganvenkat/ZeitviewAssignment.git
+  git clone https://github.com/jaganvenkat/Sprinto_Assignment.git
   
 2. Install the project dependencies:
 
